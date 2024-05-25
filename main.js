@@ -47,5 +47,7 @@ class BookManager {
     })
   }
 
-
 }
+addBookBtn.addEventListener("click", () => {
+  
+})
