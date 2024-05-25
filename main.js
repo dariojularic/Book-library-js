@@ -1,6 +1,7 @@
 import './style.css'
 
 const addBookBtn = document.querySelector(".add-book");
+const bookList = document.querySelector(".ul-list");
 
 class Book {
   constructor(id, title, author, numberOfPages) {
@@ -31,7 +32,20 @@ class BookManager {
   }
 
   // updateBook(bookId)
-
+  renderBooks() {
+    this.books.forEach(book => {
+      const html = `<li class="list-item">
+                      <h3>${book.title}</h3>
+                      <p>${book.author}</p>
+                      <p>${book.numberOfPages}</p>
+                      <div>
+                        <button>${book.isRead ? "Finished reading!" : "Didn't read!"}</button>
+                        <button></button>
+                      </div>
+                    </li>`;
+      bookList.insertAdjacentHTML("afterbegin", html);
+    })
+  }
 
 
 }
