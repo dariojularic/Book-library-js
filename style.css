@@ -16,7 +16,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%);
-  transition: all 1s;
+  /* transition: all 1s; */
 }
 
 .title-div {
@@ -72,7 +72,31 @@ body {
 
 }
 
+.checkbox-submit-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.checkbox-label {
+  align-self: center;
+}
+
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.ul-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style-type: none;
+}
+
+.list-item {
+  padding: 16px;
+  background-color: rgb(225, 225, 225);
+  border-radius: 16px;
+  text-align: center;
+
 }
