@@ -2,6 +2,8 @@ import './style.css'
 
 const addBookBtn = document.querySelector(".add-book");
 const bookList = document.querySelector(".ul-list");
+const form = document.querySelector(".form-div");
+
 
 class Book {
   constructor(id, title, author, numberOfPages) {
@@ -49,5 +51,5 @@ class BookManager {
 
 }
 addBookBtn.addEventListener("click", () => {
-  
+  form.style.visibility = "visible";
 })
