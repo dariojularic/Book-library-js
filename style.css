@@ -12,11 +12,12 @@ body {
   padding: 16px;
   background-color: rgb(176, 176, 176);
   border-radius: 8px;
-  position: absolute;
+  /* position: absolute; */
   top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  /* transition: all 1s; */
+  left: 100%;
+  width: 480px;
+  /* transform: translate(-50%); */
+  /* transition: 2s; */
 }
 
 .title-div {
@@ -40,8 +41,13 @@ body {
 .form-input {
   border-radius: 8px;
   height: 24px;
+}
 
-  
+.exit {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+
 }
 
 .form {
@@ -99,4 +105,8 @@ body {
   border-radius: 16px;
   text-align: center;
 
+}
+
+.slide-div {
+  transition: 1s;
 }
