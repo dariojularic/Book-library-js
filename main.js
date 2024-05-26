@@ -47,6 +47,11 @@ class BookManager {
     this.books = this.books.filter(book => book.id !== bookId)
   }
 
+  findBook(bookId) {
+    const book = this.books.find(book => book.id === bookId)
+    return book;
+  }
+
   startUpdate(bookId) {
     const updatedBook = this.books.find(book => book.id === bookId);
     console.log(updatedBook.title)
@@ -105,23 +110,23 @@ function clearEditForm() {
 }
 
 function hideForm() {
-  form.classList.add("hidden");
   form.style.transform = "translate(-1000px)";
+  form.classList.add("hidden");
 }
 
 function hideEditForm() {
-  editForm.classList.add("hidden")
   editForm.style.transform = "translate(-1000px)"
+  editForm.classList.add("hidden")
 }
 
 function showForm() {
   form.classList.remove("hidden");
-  form.style.transform = "translateX(50%)";
+  form.style.transform = "translateX(600px)";
 }
 
 function showEditForm() {
   editForm.classList.remove("hidden");
-  editForm.style.transform = "translateX(50%)";
+  editForm.style.transform = "translateX(600px)";
 }
 
 const bookManager = new BookManager();
@@ -163,6 +168,14 @@ bookList.addEventListener("click", (event) => {
     const idToUpdate = event.target.closest(".list-item").getAttribute("data-id");
     bookManager.startUpdate(idToUpdate);
     showEditForm()
+  }
+
+  if (event.target.value === "read") {
+    const bookId = event.target.closest(".list-item").getAttribute("data-id");
+    const book = bookManager.findBook(bookId);
+    book.readBook()
+    bookList.innerHTML = ""
+    bookManager.renderBooks()
   }
 })
 

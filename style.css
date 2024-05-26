@@ -2,11 +2,11 @@ body {
   background: #373B44;  /* fallback for old browsers */
   background: linear-gradient(to top, #e4e5e6, #00416a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   min-height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .container {
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .heading-button {
@@ -26,14 +26,9 @@ body {
   background-color: rgb(176, 176, 176);
   border-radius: 8px;
   position: absolute;
-  /* top: 50%; */
-  /* left: 100%; */
   right: 1000px;
   width: 480px;
-  /* transform: translate(300%); */
   transition: transform 0.3s;
-  /* display: none; */
-
 }
 
 .edit-form-div {
@@ -41,19 +36,14 @@ body {
   background-color: rgb(176, 176, 176);
   border-radius: 8px;
   position: absolute;
-  /* top: 50%;
-  left: 100%; */  
   width: 480px;
-  /* transform: translate(300%); */
   right: 1000px;
   transition: transform 0.3s;
-  /* display: none; */
 }
 
 .btn {
   border-radius: 8px;
   padding: 4px 12px 4px 12px;
-
 }
 
 .edit-title-div {
@@ -83,7 +73,6 @@ body {
   position: absolute;
   top: 2px;
   right: 5px;
-
 }
 
 
@@ -114,7 +103,6 @@ body {
   position: absolute;
   top: 2px;
   right: 5px;
-
 }
 
 .form {
@@ -164,7 +152,6 @@ body {
   align-self: center;
 }
 
-
 .ul-list {
   display: flex;
   flex-wrap: wrap;
@@ -177,10 +164,4 @@ body {
   background-color: rgb(225, 225, 225);
   border-radius: 16px;
   text-align: center;
-}
-
-.slide-div {
-  transition: 1s;
-  overflow: hidden;
-  /* position: relative; */
 }
