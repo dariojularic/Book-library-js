@@ -17,13 +17,6 @@ const editExit = document.querySelector(".edit-exit");
 const heading = document.querySelector(".heading-button");
 const overlay = document.querySelector(".overlay");
 
-// kad stisnem enter na formi, ne ide u novi input nego submit
-// finish update i trazenje knjige
-// jel mora bit visibility hidden na formi kad maknem?
-// bookId sam spremio u edit form titel, jesam li mogao bilo gdje?
-
-
-
 class Book {
   constructor(title, author, numberOfPages, isRead) {
     this.id = self.crypto.randomUUID();
@@ -42,6 +35,7 @@ class BookManager {
   books;
   constructor() {
     this.books = []
+    this.currentUpdatingId = "";
   }
 
   addBook(book) {
@@ -59,17 +53,16 @@ class BookManager {
 
   startUpdate(bookId) {
     const updatedBook = this.books.find(book => book.id === bookId);
+    this.currentUpdatingId = updatedBook.id;
     editTitleInput.value = updatedBook.title;
-    // moram spremit bookId
-
-    editTitleInput.setAttribute("data-id", bookId)
+    // editTitleInput.setAttribute("data-id", bookId)
     editAuthorInput.value = updatedBook.author;
     editNumberOfPagesInput.value = updatedBook.numberOfPages;
     editCheckbox.checked = updatedBook.isRead;
   }
   
-  finishUpdate(bookId) {
-    const updatedBook = this.books.find(book => book.id === bookId);
+  finishUpdate() {
+    const updatedBook = this.books.find(book => book.id === this.currentUpdatingId);
     updatedBook.title = editTitleInput.value;
     updatedBook.author = editAuthorInput.value;
     updatedBook.numberOfPages = editNumberOfPagesInput.value;
@@ -140,18 +133,26 @@ addBookBtn.addEventListener("click", () => {
   showForm()
 })
 
+// let title = ""; 
+// titleInput.addEventListener("input", (event) => {
+//   title = event.target.value
+//   console.log(title)
+// })
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  console.log("test")
   if (titleInput.value !== "" && authorInput.value !== "" && numberOfPagesInput.value !== "") {
-    const book = new Book(titleInput.value, authorInput.value, numberOfPagesInput.value, checkbox.checked);
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const numberOfPages = numberOfPagesInput.value;
+    const book = new Book(title, author, numberOfPages, checkbox.checked);
     bookManager.addBook(book);
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideForm()
     if (bookList !== "") heading.style.paddingTop = "20px"
   }
-  
-  
 })
 
 exitBtn.addEventListener("click", () => {
@@ -185,7 +186,7 @@ bookList.addEventListener("click", (event) => {
 editForm.addEventListener("submit", (event) => {
   event.preventDefault()
   if (editAuthorInput !== "" && editTitleInput !== "" && editNumberOfPagesInput !== "") {
-    bookManager.finishUpdate(editTitleInput.getAttribute("data-id"))
+    bookManager.finishUpdate();
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideEditForm()

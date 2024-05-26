@@ -176,8 +176,9 @@ body {
 .ul-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 40px;
   list-style-type: none;
+  justify-content: space-evenly;  
 }
 
 .list-item {
@@ -186,9 +187,21 @@ body {
   border-radius: 16px;
   text-align: center;
   min-width: 300px;
+  transition: 0.5s;
+}
+
+.list-item:hover {
+  transition: 0.5s;
+  scale: 1.1;
 }
 
 .buttons-div {
   display: flex;
   justify-content: space-between;
+}
+
+.books-list {
+  display: flex;
+  justify-content: center;
+  /* padding-left: 0px; */
 }
