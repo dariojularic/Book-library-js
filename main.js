@@ -153,6 +153,5 @@ editExit.addEventListener("click", (event) => {
   editCheckbox.checked = false;
   editForm.style.transform = "translateX(300%)";
   editForm.classList.add("hidden");
-  console.log(event.target)
 })
 
