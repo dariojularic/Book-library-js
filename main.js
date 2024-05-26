@@ -20,6 +20,7 @@ const overlay = document.querySelector(".overlay");
 // kad stisnem enter na formi, ne ide u novi input nego submit
 // finish update i trazenje knjige
 // jel mora bit visibility hidden na formi kad maknem?
+// bookId sam spremio u edit form titel, jesam li mogao bilo gdje?
 
 
 
@@ -58,13 +59,13 @@ class BookManager {
 
   startUpdate(bookId) {
     const updatedBook = this.books.find(book => book.id === bookId);
-    console.log(updatedBook.title)
     editTitleInput.value = updatedBook.title;
+    // moram spremit bookId
+
     editTitleInput.setAttribute("data-id", bookId)
     editAuthorInput.value = updatedBook.author;
     editNumberOfPagesInput.value = updatedBook.numberOfPages;
     editCheckbox.checked = updatedBook.isRead;
-    // moram spremit bookId
   }
   
   finishUpdate(bookId) {
@@ -140,15 +141,13 @@ addBookBtn.addEventListener("click", () => {
 })
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault()
+  event.preventDefault();
   if (titleInput.value !== "" && authorInput.value !== "" && numberOfPagesInput.value !== "") {
     const book = new Book(titleInput.value, authorInput.value, numberOfPagesInput.value, checkbox.checked);
-    // clearForm()
     bookManager.addBook(book);
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideForm()
-    // overlay.classList.add("hidden");
     if (bookList !== "") heading.style.paddingTop = "20px"
   }
   
@@ -156,8 +155,6 @@ form.addEventListener("submit", (event) => {
 })
 
 exitBtn.addEventListener("click", () => {
-  // overlay.classList.add("hidden");
-  // clearForm()
   hideForm()
 })
 
@@ -189,7 +186,6 @@ editForm.addEventListener("submit", (event) => {
   event.preventDefault()
   if (editAuthorInput !== "" && editTitleInput !== "" && editNumberOfPagesInput !== "") {
     bookManager.finishUpdate(editTitleInput.getAttribute("data-id"))
-    // clearEditForm()
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideEditForm()
@@ -197,13 +193,10 @@ editForm.addEventListener("submit", (event) => {
 })
 
 editExit.addEventListener("click", (event) => {
-  // clearEditForm()
   hideEditForm()
-  // overlay.classList.add("hidden");
 })
 
 overlay.addEventListener("click", () => {
-  // overlay.classList.add("hidden");
   clearEditForm()
   hideEditForm()
   clearForm()

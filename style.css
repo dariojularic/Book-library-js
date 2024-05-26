@@ -61,6 +61,10 @@ body {
 .btn {
   border-radius: 8px;
   padding: 4px 12px 4px 12px;
+  background-color: #002135;
+  color: white;
+  font-weight: 700;
+  width: 96px;
 }
 
 .edit-title-div {
@@ -181,4 +185,10 @@ body {
   background-color: rgb(225, 225, 225);
   border-radius: 16px;
   text-align: center;
+  min-width: 300px;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: space-between;
 }
