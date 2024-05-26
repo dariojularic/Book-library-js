@@ -14,6 +14,10 @@ const editAuthorInput = document.querySelector("#edit-author");
 const editNumberOfPagesInput = document.querySelector("#edit-number-of-pages");
 const editCheckbox = document.querySelector(".edit-checkbox");
 const editExit = document.querySelector(".edit-exit");
+const heading = document.querySelector(".heading-button");
+// editForm.style.display = "block";
+// form.style.display = "block";
+
 
 class Book {
   constructor(title, author, numberOfPages, isRead) {
@@ -45,6 +49,7 @@ class BookManager {
 
   startUpdate(bookId) {
     const updatedBook = this.books.find(book => book.id === bookId);
+    console.log(updatedBook.title)
     editTitleInput.value = updatedBook.title;
     editTitleInput.setAttribute("data-id", bookId)
     editAuthorInput.value = updatedBook.author;
@@ -68,9 +73,9 @@ class BookManager {
                       <p>${book.author}</p>
                       <p>${book.numberOfPages}</p>
                       <div class="buttons-div">
-                        <button value="read">${book.isRead ? "Finished reading!" : "Didn't read!"}</button>
-                        <button class="update-btn" value="update">Edit Book</button>
-                        <button class="delete-btn" value="delete">Delete Book</button>
+                        <button class="btn" value="read">${book.isRead ? "Read" : "Not read"}</button>
+                        <button class="update-btn btn" value="update">Edit</button>
+                        <button class="delete-btn btn" value="delete">Delete</button>
                       </div>
                     </li>`;
       bookList.insertAdjacentHTML("afterbegin", html);
@@ -78,38 +83,71 @@ class BookManager {
   }
 }
 
+// kad dodam knjigu se sjebe background color
+// translateY na add book
+// forma iznad svega
+
+
+
+
+function clearForm() {
+    titleInput.value = "";
+    authorInput.value = "";
+    numberOfPagesInput.value = "";
+    checkbox.checked = false;
+}
+
+function clearEditForm() {
+  editTitleInput.value = "";
+  editAuthorInput.value = "";
+  editNumberOfPagesInput.value = "";
+  editCheckbox.checked = false;
+}
+
+function hideForm() {
+  form.classList.add("hidden");
+  form.style.transform = "translate(-1000px)";
+}
+
+function hideEditForm() {
+  editForm.classList.add("hidden")
+  editForm.style.transform = "translate(-1000px)"
+}
+
+function showForm() {
+  form.classList.remove("hidden");
+  form.style.transform = "translateX(50%)";
+}
+
+function showEditForm() {
+  editForm.classList.remove("hidden");
+  editForm.style.transform = "translateX(50%)";
+}
+
 const bookManager = new BookManager();
 
 addBookBtn.addEventListener("click", () => {
-  form.classList.remove("hidden");
-  // form.style.position = "absolute";
-  form.style.transform = "translateX(50%)";
-  form.style.transition = "1s";
+  showForm()
 })
 
 form.addEventListener("submit", (event) => {
   event.preventDefault()
   if (titleInput.value !== "" && authorInput.value !== "" && numberOfPagesInput.value !== "") {
     const book = new Book(titleInput.value, authorInput.value, numberOfPagesInput.value, checkbox.checked);
-    titleInput.value = "";
-    authorInput.value = "";
-    numberOfPagesInput.value = "";
-    checkbox.checked = false;
+    clearForm()
     bookManager.addBook(book);
     bookList.innerHTML = "";
     bookManager.renderBooks();
-    form.classList.add("hidden");
-    form.style.transform = "translateX(300%)";
+    hideForm()
   }
+  if (bookList !== "") heading.style.paddingTop = "20px"
+  
+
 })
 
 exitBtn.addEventListener("click", () => {
-  form.style.transform = "translateX(300%)";
-  titleInput.value = "";
-  authorInput.value = "";
-  numberOfPagesInput.value = "";
-  checkbox.checked = false;
-  form.classList.add("hidden");
+  clearForm()
+  hideForm()
 })
 
 bookList.addEventListener("click", (event) => {
@@ -124,9 +162,7 @@ bookList.addEventListener("click", (event) => {
     editForm.classList.remove("hidden");
     const idToUpdate = event.target.closest(".list-item").getAttribute("data-id");
     bookManager.startUpdate(idToUpdate);
-    editForm.style.transform = "translateX(50%)";
-    editForm.style.transition = "1s"
-    editForm.classList.remove("hidden");
+    showEditForm()
   }
 })
 
@@ -134,24 +170,15 @@ editForm.addEventListener("submit", (event) => {
   event.preventDefault()
   if (editAuthorInput !== "" && editTitleInput !== "" && editNumberOfPagesInput !== "") {
     bookManager.finishUpdate(editTitleInput.getAttribute("data-id"))
-    editTitleInput.value = "";
-    editAuthorInput.value = "";
-    editNumberOfPagesInput.value = "";
-    editCheckbox.checked = false;
+    clearEditForm()
     bookList.innerHTML = "";
     bookManager.renderBooks();
-    editForm.style.transform = "translateX(300%)";
-    editForm.classList.add("hidden");
+    hideEditForm()
   }
 })
 
 editExit.addEventListener("click", (event) => {
-  event.preventDefault()
-  editTitleInput.value = "";
-  editAuthorInput.value = "";
-  editNumberOfPagesInput.value = "";
-  editCheckbox.checked = false;
-  editForm.style.transform = "translateX(300%)";
-  editForm.classList.add("hidden");
+  clearEditForm()
+  hideEditForm()
 })
 
