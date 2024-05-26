@@ -5,6 +5,19 @@ body {
   /* overflow: hidden; */
 }
 
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+}
+
+
 .container {
   overflow: hidden;
 }
@@ -29,9 +42,12 @@ body {
   right: 1000px;
   width: 480px;
   transition: transform 0.3s;
+  margin-bottom: 80px;
+  z-index: 1000;
 }
 
 .edit-form-div {
+  z-index: 1000;
   padding: 16px;
   background-color: rgb(176, 176, 176);
   border-radius: 8px;
@@ -39,6 +55,7 @@ body {
   width: 480px;
   right: 1000px;
   transition: transform 0.3s;
+  margin-bottom: 80px;
 }
 
 .btn {

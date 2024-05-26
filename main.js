@@ -15,8 +15,12 @@ const editNumberOfPagesInput = document.querySelector("#edit-number-of-pages");
 const editCheckbox = document.querySelector(".edit-checkbox");
 const editExit = document.querySelector(".edit-exit");
 const heading = document.querySelector(".heading-button");
-// editForm.style.display = "block";
-// form.style.display = "block";
+const overlay = document.querySelector(".overlay");
+
+// kad stisnem enter na formi, ne ide u novi input nego submit
+// finish update i trazenje knjige
+// jel mora bit visibility hidden na formi kad maknem?
+
 
 
 class Book {
@@ -88,13 +92,6 @@ class BookManager {
   }
 }
 
-// kad dodam knjigu se sjebe background color
-// translateY na add book
-// forma iznad svega
-
-
-
-
 function clearForm() {
     titleInput.value = "";
     authorInput.value = "";
@@ -112,21 +109,28 @@ function clearEditForm() {
 function hideForm() {
   form.style.transform = "translate(-1000px)";
   form.classList.add("hidden");
+  clearForm()
+  overlay.classList.add("hidden")
 }
 
 function hideEditForm() {
   editForm.style.transform = "translate(-1000px)"
+  // jel mora bit visibility hidden???
   editForm.classList.add("hidden")
+  clearEditForm()
+  overlay.classList.add("hidden")
 }
 
 function showForm() {
   form.classList.remove("hidden");
   form.style.transform = "translateX(600px)";
+  overlay.classList.remove("hidden");
 }
 
 function showEditForm() {
   editForm.classList.remove("hidden");
   editForm.style.transform = "translateX(600px)";
+  overlay.classList.remove("hidden");
 }
 
 const bookManager = new BookManager();
@@ -139,19 +143,21 @@ form.addEventListener("submit", (event) => {
   event.preventDefault()
   if (titleInput.value !== "" && authorInput.value !== "" && numberOfPagesInput.value !== "") {
     const book = new Book(titleInput.value, authorInput.value, numberOfPagesInput.value, checkbox.checked);
-    clearForm()
+    // clearForm()
     bookManager.addBook(book);
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideForm()
+    // overlay.classList.add("hidden");
+    if (bookList !== "") heading.style.paddingTop = "20px"
   }
-  if (bookList !== "") heading.style.paddingTop = "20px"
   
-
+  
 })
 
 exitBtn.addEventListener("click", () => {
-  clearForm()
+  // overlay.classList.add("hidden");
+  // clearForm()
   hideForm()
 })
 
@@ -183,7 +189,7 @@ editForm.addEventListener("submit", (event) => {
   event.preventDefault()
   if (editAuthorInput !== "" && editTitleInput !== "" && editNumberOfPagesInput !== "") {
     bookManager.finishUpdate(editTitleInput.getAttribute("data-id"))
-    clearEditForm()
+    // clearEditForm()
     bookList.innerHTML = "";
     bookManager.renderBooks();
     hideEditForm()
@@ -191,7 +197,15 @@ editForm.addEventListener("submit", (event) => {
 })
 
 editExit.addEventListener("click", (event) => {
-  clearEditForm()
+  // clearEditForm()
   hideEditForm()
+  // overlay.classList.add("hidden");
 })
 
+overlay.addEventListener("click", () => {
+  // overlay.classList.add("hidden");
+  clearEditForm()
+  hideEditForm()
+  clearForm()
+  hideForm()
+})
