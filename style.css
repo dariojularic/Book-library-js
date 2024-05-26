@@ -2,7 +2,6 @@ body {
   background: #373B44;  /* fallback for old browsers */
   background: linear-gradient(to top, #e4e5e6, #00416a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   min-height: 100vh;
-  /* overflow: hidden; */
 }
 
 .overlay {
@@ -16,7 +15,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.5s;
 }
-
 
 .container {
   overflow: hidden;
@@ -203,8 +201,6 @@ body {
 .books-list {
   display: flex;
   justify-content: center;
-  /* position: relative; */
-  /* padding-left: 0px; */
 }
 
 button {
@@ -213,5 +209,4 @@ button {
 
 button:hover {
   scale: 1.05;
-
 }

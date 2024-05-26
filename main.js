@@ -55,7 +55,6 @@ class BookManager {
     const updatedBook = this.books.find(book => book.id === bookId);
     this.currentUpdatingId = updatedBook.id;
     editTitleInput.value = updatedBook.title;
-    // editTitleInput.setAttribute("data-id", bookId)
     editAuthorInput.value = updatedBook.author;
     editNumberOfPagesInput.value = updatedBook.numberOfPages;
     editCheckbox.checked = updatedBook.isRead;
@@ -109,7 +108,6 @@ function hideForm() {
 
 function hideEditForm() {
   editForm.style.transform = "translate(-1000px)"
-  // jel mora bit visibility hidden???
   editForm.classList.add("hidden")
   clearEditForm()
   overlay.classList.add("hidden")
