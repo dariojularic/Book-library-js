@@ -183,7 +183,7 @@ body {
 
 .list-item {
   padding: 16px;
-  background-color: rgb(225, 225, 225);
+  background-color: #dee2e6;
   border-radius: 16px;
   text-align: center;
   min-width: 300px;
@@ -203,5 +203,15 @@ body {
 .books-list {
   display: flex;
   justify-content: center;
+  /* position: relative; */
   /* padding-left: 0px; */
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  scale: 1.05;
+
 }
