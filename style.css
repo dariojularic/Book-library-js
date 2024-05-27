@@ -101,6 +101,8 @@ body {
   position: absolute;
   top: 2px;
   right: 5px;
+  background-color:  rgb(208 209 216);
+  border: none;
 }
 
 
@@ -131,6 +133,8 @@ body {
   position: absolute;
   top: 2px;
   right: 5px;
+  border: none;
+  background-color:  rgb(208 209 216);
 }
 
 .form {
@@ -182,6 +186,10 @@ body {
   align-self: center;
 }
 
+.checkbox {
+  width: 16px;
+}
+
 .ul-list {
   display: flex;
   flex-wrap: wrap;
@@ -220,4 +228,14 @@ button {
 
 button:hover {
   scale: 1.05;
+}
+
+.test {
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: -100px;
+  transition: 1s;
 }
