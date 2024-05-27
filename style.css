@@ -35,26 +35,34 @@ body {
 
 .form-div {
   padding: 16px;
-  background-color: rgb(176, 176, 176);
+  background-color: rgb(208 209 216);
   border-radius: 8px;
   position: absolute;
   right: 1000px;
-  width: 480px;
+  width: 560px;
+  height: 240px;
   transition: transform 0.3s;
   margin-bottom: 80px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .edit-form-div {
   z-index: 1000;
   padding: 16px;
-  background-color: rgb(176, 176, 176);
+  background-color: rgb(208 209 216);
   border-radius: 8px;
   position: absolute;
-  width: 480px;
+  width: 560px;
+  height: 240px;
   right: 1000px;
   transition: transform 0.3s;
   margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .btn {
@@ -148,10 +156,11 @@ body {
 .add-book {
   background-color: #002135;
   color: white;
-  padding: 4px 16px 4px 16px;
+  padding: 16px 32px;
   font-weight: 700;
-  border-radius: 8px;
-  scale: 1.25;
+  border-radius: 24px;
+  font-size: 20px;
+  border: none;
 }
 
 
